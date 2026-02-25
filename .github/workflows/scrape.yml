@@ -1,0 +1,14 @@
+name: Scrape Tables
+on: [push, workflow_dispatch]
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup for 23f1003184@ds.study.iitm.ac.in
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npx playwright install chromium
+      - run: npm run scrape
